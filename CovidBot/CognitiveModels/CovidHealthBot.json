@@ -1,0 +1,142 @@
+{
+  "luis_schema_version": "7.0.0",
+  "intents": [
+    {
+      "name": "Diagonse Covid",
+      "features": []
+    },
+    {
+      "name": "Greeting",
+      "features": []
+    },
+    {
+      "name": "None",
+      "features": []
+    },
+    {
+      "name": "Symptoms Declaration",
+      "features": []
+    }
+  ],
+  "entities": [
+    {
+      "name": "symptoms",
+      "children": [],
+      "roles": [],
+      "features": [
+        {
+          "featureName": "Symptoms",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "hierarchicals": [],
+  "composites": [],
+  "closedLists": [],
+  "prebuiltEntities": [],
+  "utterances": [
+    {
+      "text": "diagnose me for covid",
+      "intent": "Diagonse Covid",
+      "entities": []
+    },
+    {
+      "text": "fever,difficulty in breathing,dry cough",
+      "intent": "Symptoms Declaration",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 4,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 6,
+          "endPos": 28,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 30,
+          "endPos": 38,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "hello",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hey bot",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hlo",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "my symptoms are fever , cold, cough",
+      "intent": "Symptoms Declaration",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 16,
+          "endPos": 20,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 24,
+          "endPos": 27,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 30,
+          "endPos": 34,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "please test me for covid",
+      "intent": "Diagonse Covid",
+      "entities": []
+    }
+  ],
+  "versionId": "0.1",
+  "name": "CovidHealthBot",
+  "desc": "Health bot which diagnoses",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "phraselists": [
+    {
+      "name": "Symptoms",
+      "mode": true,
+      "words": "Fever,Cold,Cough,High Fever,Difficulty in Breathing,coughs,sniffles,fevers",
+      "activated": true,
+      "enabledForAllModels": false
+    }
+  ],
+  "regex_features": [],
+  "patterns": [],
+  "settings": []
+}

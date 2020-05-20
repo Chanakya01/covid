@@ -12,56 +12,63 @@ using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace CovidBot.Dialogs
 {
-    public class BookingDialog : CancelAndHelpDialog
+    public class DiagnoseDialog : CancelAndHelpDialog
     {
         private const string DestinationStepMsgText = "Where would you like to travel to?";
         private const string OriginStepMsgText = "Where are you traveling from?";
 
-        public BookingDialog()
-            : base(nameof(BookingDialog))
+        public DiagnoseDialog()
+            : base(nameof(DiagnoseDialog))
         {
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             AddDialog(new DateResolverDialog());
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), new WaterfallStep[]
             {
-                DestinationStepAsync,
-                OriginStepAsync,
+                AskSymptomsStepAsync,
+                GetSymptomsStepAsync,
                 TravelDateStepAsync,
-                ConfirmStepAsync,
-                FinalStepAsync,
+                //ConfirmStepAsync,
+                //FinalStepAsync,
             }));
 
             // The initial child Dialog to run.
             InitialDialogId = nameof(WaterfallDialog);
         }
 
-        private async Task<DialogTurnResult> DestinationStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> AskSymptomsStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var bookingDetails = (BookingDetails)stepContext.Options;
+            //var bookingDetails = (BookingDetails)stepContext.Options;
 
-            if (bookingDetails.Destination == null)
-            {
-                var promptMessage = MessageFactory.Text(DestinationStepMsgText, DestinationStepMsgText, InputHints.ExpectingInput);
-                return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = promptMessage }, cancellationToken);
-            }
+            //if (bookingDetails.Destination == null)
+            //{
+            //    var promptMessage = MessageFactory.Text(DestinationStepMsgText, DestinationStepMsgText, InputHints.ExpectingInput);
+            //    return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = promptMessage }, cancellationToken);
+            //}
 
-            return await stepContext.NextAsync(bookingDetails.Destination, cancellationToken);
+            //  return await stepContext.NextAsync(bookingDetails.Destination, cancellationToken);
+
+            var messageText = "Please mention some of the symptoms you encountered?";
+            var messageTextE = MessageFactory.Text(messageText, messageText, InputHints.IgnoringInput);
+            // await stepContext.Context.SendActivityAsync(messageTextE, cancellationToken);
+            return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = messageTextE }, cancellationToken);
+            // return await stepContext.NextAsync(null,cancellationToken);
+
         }
 
-        private async Task<DialogTurnResult> OriginStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> GetSymptomsStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var bookingDetails = (BookingDetails)stepContext.Options;
+            //var bookingDetails = (BookingDetails)stepContext.Options;
 
-            bookingDetails.Destination = (string)stepContext.Result;
+            //bookingDetails.Destination = (string)stepContext.Result;
 
-            if (bookingDetails.Origin == null)
-            {
-                var promptMessage = MessageFactory.Text(OriginStepMsgText, OriginStepMsgText, InputHints.ExpectingInput);
-                return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = promptMessage }, cancellationToken);
-            }
+            //if (bookingDetails.Origin == null)
+            //{
+            //    var promptMessage = MessageFactory.Text(OriginStepMsgText, OriginStepMsgText, InputHints.ExpectingInput);
+            //    return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = promptMessage }, cancellationToken);
+            //}
 
-            return await stepContext.NextAsync(bookingDetails.Origin, cancellationToken);
+            return await stepContext.NextAsync(cancellationToken);
         }
 
         private async Task<DialogTurnResult> TravelDateStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)

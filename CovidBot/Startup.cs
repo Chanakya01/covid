@@ -35,10 +35,10 @@ namespace CovidBot
             services.AddSingleton<ConversationState>();
 
             // Register LUIS recognizer
-            services.AddSingleton<FlightBookingRecognizer>();
+            services.AddSingleton<CovidRecognizer>();
 
             // Register the BookingDialog.
-            services.AddSingleton<BookingDialog>();
+            services.AddSingleton<DiagnoseDialog>();
 
             // The MainDialog that will be run by the bot.
             services.AddSingleton<MainDialog>();
