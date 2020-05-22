@@ -14,8 +14,13 @@
       "features": []
     },
     {
-      "name": "Symptoms Declaration",
-      "features": []
+      "name": "Symptoms At Risk",
+      "features": [
+        {
+          "modelName": "symptoms",
+          "isRequired": false
+        }
+      ]
     }
   ],
   "entities": [
@@ -25,7 +30,15 @@
       "roles": [],
       "features": [
         {
-          "featureName": "Symptoms",
+          "featureName": "Positive symptoms",
+          "isRequired": false
+        },
+        {
+          "featureName": "negative symptoms",
+          "isRequired": false
+        },
+        {
+          "featureName": "previous illness",
           "isRequired": false
         }
       ]
@@ -37,13 +50,37 @@
   "prebuiltEntities": [],
   "utterances": [
     {
-      "text": "diagnose me for covid",
+      "text": "chest pain",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 9,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "diagnose me for covid,corona",
       "intent": "Diagonse Covid",
       "entities": []
     },
     {
+      "text": "difficulty in breathing, shortness of breath",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 25,
+          "endPos": 33,
+          "children": []
+        }
+      ]
+    },
+    {
       "text": "fever,difficulty in breathing,dry cough",
-      "intent": "Symptoms Declaration",
+      "intent": "Symptoms-At Risk",
       "entities": [
         {
           "entity": "symptoms",
@@ -66,6 +103,11 @@
       ]
     },
     {
+      "text": "get tested for covid,corona",
+      "intent": "Diagonse Covid",
+      "entities": []
+    },
+    {
       "text": "hello",
       "intent": "Greeting",
       "entities": []
@@ -86,13 +128,107 @@
       "entities": []
     },
     {
+      "text": "high fever, dry cough, tiredness",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 9,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 12,
+          "endPos": 20,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 23,
+          "endPos": 31,
+          "children": []
+        }
+      ]
+    },
+    {
       "text": "hlo",
       "intent": "Greeting",
       "entities": []
     },
     {
+      "text": "i cannot breathe longer",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 9,
+          "endPos": 22,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "i feel difficulty in breathing",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 7,
+          "endPos": 19,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 21,
+          "endPos": 29,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "i lost my sense of taste and smell",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 2,
+          "endPos": 5,
+          "children": []
+        },
+        {
+          "entity": "symptoms",
+          "startPos": 19,
+          "endPos": 33,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "i want to get assessed for covid",
+      "intent": "Diagonse Covid",
+      "entities": []
+    },
+    {
+      "text": "i want to have a covid assessment",
+      "intent": "Diagonse Covid",
+      "entities": []
+    },
+    {
+      "text": "muscle pains",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 11,
+          "children": []
+        }
+      ]
+    },
+    {
       "text": "my symptoms are fever , cold, cough",
-      "intent": "Symptoms Declaration",
+      "intent": "Symptoms-At Risk",
       "entities": [
         {
           "entity": "symptoms",
@@ -115,9 +251,50 @@
       ]
     },
     {
-      "text": "please test me for covid",
+      "text": "please test me for covid,corona",
       "intent": "Diagonse Covid",
       "entities": []
+    },
+    {
+      "text": "self assessment for covid,corona",
+      "intent": "Diagonse Covid",
+      "entities": []
+    },
+    {
+      "text": "sore throat",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 10,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "throat pain",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 0,
+          "endPos": 10,
+          "children": []
+        }
+      ]
+    },
+    {
+      "text": "trouble breathing",
+      "intent": "Symptoms-At Risk",
+      "entities": [
+        {
+          "entity": "symptoms",
+          "startPos": 8,
+          "endPos": 16,
+          "children": []
+        }
+      ]
     }
   ],
   "versionId": "0.1",
@@ -129,9 +306,23 @@
   "regex_entities": [],
   "phraselists": [
     {
-      "name": "Symptoms",
+      "name": "Positive symptoms",
       "mode": true,
-      "words": "Fever,Cold,Cough,High Fever,Difficulty in Breathing,coughs,sniffles,fevers",
+      "words": "Fever,Cold,Cough,High Fever,Difficulty in Breathing,coughs,sniffles,fevers,tiredness,fatigue,short breath,muscle pains,sore throat",
+      "activated": true,
+      "enabledForAllModels": false
+    },
+    {
+      "name": "negative symptoms",
+      "mode": true,
+      "words": "dizziness",
+      "activated": true,
+      "enabledForAllModels": false
+    },
+    {
+      "name": "previous illness",
+      "mode": true,
+      "words": "high blood pressure,heart disease,lung disease,asthma,diabetes,cancer,heart attack,cardiac arrests,heart related",
       "activated": true,
       "enabledForAllModels": false
     }

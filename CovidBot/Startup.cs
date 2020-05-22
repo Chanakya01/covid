@@ -39,6 +39,7 @@ namespace CovidBot
 
             // Register the BookingDialog.
             services.AddSingleton<DiagnoseDialog>();
+            services.AddSingleton<UserDetailsDialog>();
 
             // The MainDialog that will be run by the bot.
             services.AddSingleton<MainDialog>();

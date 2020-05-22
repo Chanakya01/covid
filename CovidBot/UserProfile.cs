@@ -5,12 +5,14 @@
 
 namespace CovidBot
 {
-    public class BookingDetails
+    public class UserProfile
     {
-        public string Destination { get; set; }
+        public long Pincode { get; set; }
 
-        public string Origin { get; set; }
+        public string Name { get; set; }
 
-        public string TravelDate { get; set; }
+        public int Age { get; set; }
+
+        public string Address { get; set; }  
     }
 }
